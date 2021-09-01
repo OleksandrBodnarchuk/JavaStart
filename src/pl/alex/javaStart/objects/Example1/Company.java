@@ -1,4 +1,4 @@
-package pl.alex.javaStart.ClassAndObject.Example1;
+package pl.alex.javaStart.objects.Example1;
 
 public class Company {
     public static void main(String[] args) {

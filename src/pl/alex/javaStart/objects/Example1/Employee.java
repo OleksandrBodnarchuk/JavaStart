@@ -1,4 +1,4 @@
-package pl.alex.javaStart.ClassAndObject.Example1;
+package pl.alex.javaStart.objects.Example1;
 
 class Employee {
     String name;
