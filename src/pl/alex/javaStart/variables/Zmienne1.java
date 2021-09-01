@@ -1,4 +1,4 @@
-package pl.alex.javaStart.firstSteps;
+package pl.alex.javaStart.variables;
 
 public class Zmienne1 {
     public static void main(String[] args) {
