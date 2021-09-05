@@ -1,4 +1,4 @@
-package pl.alex.javaStart.variables;
+package pl.alex.javaStart.objects.variables;
 
 public class OperacjeZmienne2 {
     public static void main(String[] args) {

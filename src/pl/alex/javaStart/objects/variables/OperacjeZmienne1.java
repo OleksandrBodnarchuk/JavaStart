@@ -1,4 +1,4 @@
-package pl.alex.javaStart.variables;
+package pl.alex.javaStart.objects.variables;
 
 import java.util.Random;
 
