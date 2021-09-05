@@ -2,8 +2,6 @@ package pl.alex.javaStart.library;
 
 public class Book {
     static String appName = "Library v1.0.0";
-
-
     String title;
     String author;
     int releaseDate;
@@ -20,7 +18,7 @@ public class Book {
         this.isbn = isbn;
     }
 
-    void printInto(){
+    void printInfo(){
         System.out.println(this);
     }
 
