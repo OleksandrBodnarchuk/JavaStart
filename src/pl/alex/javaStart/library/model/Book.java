@@ -1,4 +1,4 @@
-package pl.alex.javaStart.library;
+package pl.alex.javaStart.library.model;
 
 public class Book {
     static String appName = "Library v1.0.0";
@@ -18,7 +18,7 @@ public class Book {
         this.isbn = isbn;
     }
 
-    void printInfo(){
+   public void printInfo(){
         System.out.println(this);
     }
 
