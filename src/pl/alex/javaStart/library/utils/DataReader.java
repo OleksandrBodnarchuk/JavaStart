@@ -7,8 +7,6 @@ import java.util.Scanner;
 public class DataReader {
     private final Scanner scanner = new Scanner(System.in);
 
-
-
     public Book getDataAndCreateBook(){
         System.out.println("Title:");
         String title = scanner.nextLine();

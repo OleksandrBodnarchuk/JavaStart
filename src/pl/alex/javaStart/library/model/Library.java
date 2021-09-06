@@ -1,15 +1,14 @@
-package pl.alex.javaStart.library;
+package pl.alex.javaStart.library.model;
 
 import pl.alex.javaStart.library.model.Book;
-import pl.alex.javaStart.library.utils.DataReader;
 
 public class Library {
-    private final int maxBooks= 1000;
-    private Book[] books = new Book[maxBooks];
+    private final static int MAX_BOOKS = 1000;
+    private final Book[] books = new Book[MAX_BOOKS];
     private int booksNumber;
 
     public void addBook(Book book) {
-        if(booksNumber < maxBooks) {
+        if(booksNumber < MAX_BOOKS) {
             books[booksNumber] = book;
             booksNumber++;
         } else {

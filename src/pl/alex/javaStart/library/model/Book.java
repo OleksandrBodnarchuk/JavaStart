@@ -2,12 +2,12 @@ package pl.alex.javaStart.library.model;
 
 public class Book {
     static String appName = "Library v1.0.0";
-    String title;
-    String author;
-    int releaseDate;
-    int pages;
-    String publisher;
-    String isbn;
+    private final String title;
+    private final String author;
+    private final int releaseDate;
+    private final int pages;
+    private final String publisher;
+    private final String isbn;
 
     public Book(String title, String author, int releaseDate, int pages, String publisher, String isbn) {
         this.title = title;
