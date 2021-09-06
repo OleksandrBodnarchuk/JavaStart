@@ -1,36 +1,22 @@
 package pl.alex.javaStart.library.model;
 
-public class Book {
-    static String appName = "Library v1.0.0";
-    private final String title;
+public class Book extends Publication {
     private final String author;
-    private final int releaseDate;
     private final int pages;
-    private final String publisher;
     private final String isbn;
 
-    public Book(String title, String author, int releaseDate, int pages, String publisher, String isbn) {
-        this.title = title;
+    public Book(String title, int releaseDate, String publisher, String author, int pages, String isbn) {
+        super(title, releaseDate, publisher);
         this.author = author;
-        this.releaseDate = releaseDate;
         this.pages = pages;
-        this.publisher = publisher;
         this.isbn = isbn;
     }
 
-   public void printInfo(){
-        System.out.println(this);
+    public void printInfo() {
+        System.out.println(
+                this.author + " " + getTitle() + " " + getReleaseDate() + " " + getPublisher() + " " + this.pages + " " + this.isbn
+        );
     }
 
-    @Override
-    public String toString() {
-        return "Book{" +
-                "title='" + title + '\'' +
-                ", author='" + author + '\'' +
-                ", releaseDate=" + releaseDate +
-                ", pages=" + pages +
-                ", publisher='" + publisher + '\'' +
-                ", isbn='" + isbn + '\'' +
-                '}';
-    }
+
 }
