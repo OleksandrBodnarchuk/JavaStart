@@ -1,5 +1,7 @@
 package pl.alex.javaStart.library.model;
 
+import java.util.Objects;
+
 public class Book extends Publication {
     private final String author;
     private final int pages;
@@ -12,12 +14,22 @@ public class Book extends Publication {
         this.isbn = isbn;
     }
 
+
     @Override
-    public void printInfo() {
-        System.out.println(
-                this.author + " " + getTitle() + " " + getYear() + " " + getPublisher() + " " + this.pages + " " + this.isbn
-        );
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return pages == book.pages && Objects.equals(author, book.author) && Objects.equals(isbn, book.isbn);
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(author, pages, isbn);
+    }
 
+    @Override
+    public String toString() {
+        return super.getTitle() + " " + this.author + " " + super.getPublisher() + " " + this.pages + "pages " + super.getYear() + " " + this.isbn;
+    }
 }

@@ -1,5 +1,7 @@
 package pl.alex.javaStart.library.model;
 
+import java.util.Objects;
+
 public class Publication {
     private final String title;
     private final String publisher;
@@ -19,13 +21,20 @@ public class Publication {
         return title;
     }
 
-
     String getPublisher() {
         return publisher;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Publication that = (Publication) o;
+        return year == that.year && Objects.equals(title, that.title) && Objects.equals(publisher, that.publisher);
+    }
 
-
-    public void printInfo() {
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, publisher, year);
     }
 }
