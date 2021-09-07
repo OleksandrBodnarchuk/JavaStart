@@ -5,21 +5,27 @@ public class Publication {
     private final String publisher;
     private final int year;
 
-    public Publication(String title, String publisher, int releaseDate) {
+    Publication(String title, String publisher, int year) {
         this.title = title;
         this.publisher = publisher;
-        this.year = releaseDate;
+        this.year = year;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public int getYear() {
+    int getYear() {
         return year;
     }
 
-    public String getPublisher() {
+    String getTitle() {
+        return title;
+    }
+
+
+    String getPublisher() {
         return publisher;
+    }
+
+
+
+    public void printInfo() {
     }
 }

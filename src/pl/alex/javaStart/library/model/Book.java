@@ -12,6 +12,7 @@ public class Book extends Publication {
         this.isbn = isbn;
     }
 
+    @Override
     public void printInfo() {
         System.out.println(
                 this.author + " " + getTitle() + " " + getYear() + " " + getPublisher() + " " + this.pages + " " + this.isbn
