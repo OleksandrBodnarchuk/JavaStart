@@ -21,8 +21,7 @@ public class DataReader {
         String publisher = sc.nextLine();
         System.out.println("ISBN:");
         String isbn = sc.nextLine();
-        sc.close();
-        return new Book(title,releaseDate,publisher,author,pages,isbn);
+        return new Book(title,publisher,releaseDate,author,pages,isbn);
     }
 
     public Magazine readAndCreateMagazine() {
@@ -38,8 +37,7 @@ public class DataReader {
         int month = getInt();
         System.out.println("Dzień: ");
         int day = getInt();
-
-        return new Magazine(title, publisher, language, year, month, day);
+        return new Magazine(title, publisher,year, month, day, language);
     }
 
     public int getInt() {

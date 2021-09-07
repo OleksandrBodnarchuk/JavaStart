@@ -5,8 +5,8 @@ public class Book extends Publication {
     private final int pages;
     private final String isbn;
 
-    public Book(String title, int releaseDate, String publisher, String author, int pages, String isbn) {
-        super(title, releaseDate, publisher);
+    public Book(String title, String publisher, int year, String author, int pages, String isbn) {
+        super(title, publisher, year);
         this.author = author;
         this.pages = pages;
         this.isbn = isbn;
@@ -14,7 +14,7 @@ public class Book extends Publication {
 
     public void printInfo() {
         System.out.println(
-                this.author + " " + getTitle() + " " + getReleaseDate() + " " + getPublisher() + " " + this.pages + " " + this.isbn
+                this.author + " " + getTitle() + " " + getYear() + " " + getPublisher() + " " + this.pages + " " + this.isbn
         );
     }
 

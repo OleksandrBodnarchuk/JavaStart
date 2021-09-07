@@ -2,21 +2,21 @@ package pl.alex.javaStart.library.model;
 
 public class Publication {
     private final String title;
-    private final int releaseDate;
     private final String publisher;
+    private final int year;
 
-    public Publication(String title, int releaseDate, String publisher) {
+    public Publication(String title, String publisher, int releaseDate) {
         this.title = title;
-        this.releaseDate = releaseDate;
         this.publisher = publisher;
+        this.year = releaseDate;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public int getReleaseDate() {
-        return releaseDate;
+    public int getYear() {
+        return year;
     }
 
     public String getPublisher() {

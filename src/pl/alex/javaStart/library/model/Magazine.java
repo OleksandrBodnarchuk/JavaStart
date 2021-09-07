@@ -5,28 +5,16 @@ public class Magazine extends Publication {
     private final int day;
     private final String language;
 
-    public Magazine(String title, String publisher, String language, int releaseDate, int month, int day ) {
-        super(title, releaseDate, publisher);
+    public Magazine(String title, String publisher, int year, int month, int day, String language) {
+        super(title, publisher, year);
         this.month = month;
         this.day = day;
         this.language = language;
     }
 
-    public int getMonth() {
-        return month;
-    }
-
-    public int getDay() {
-        return day;
-    }
-
-    public String getLanguage() {
-        return language;
-    }
-
-    public void printInfo() {
-        String info = getTitle() + "; " + getPublisher() + "; " + getReleaseDate() + "-"
-                + month + "-" + day + "; " + language;
+    void printInfo() {
+        String info = getTitle() + "; " + getPublisher() + "; " + getYear() + "-"
+                + this.month + "-" + this.day + "; " + this.language;
         System.out.println(info);
     }
 }
