@@ -3,25 +3,31 @@ package pl.alex.javaStart.library.io;
 import pl.alex.javaStart.library.model.Book;
 import pl.alex.javaStart.library.model.Magazine;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class DataReader {
     private final Scanner sc = new Scanner(System.in);
+    private ConsolePrinter consolePrinter;
 
-    public Book readAndCreateBook(){
-        System.out.println("Title:");
+    public DataReader(ConsolePrinter consolePrinter) {
+        this.consolePrinter = consolePrinter;
+    }
+
+    public Book readAndCreateBook() {
+       consolePrinter.printLine("Tytuł:");
         String title = sc.nextLine();
-        System.out.println("Author:");
+        consolePrinter.printLine("Autor:");
         String author = sc.nextLine();
-        System.out.println("Release date:");
+        consolePrinter.printLine("Data wydania:");
         int releaseDate = getInt();
-        System.out.println("Number of pages:");
+        consolePrinter.printLine("Ilość stron:");
         int pages = getInt();
-        System.out.println("Publisher:");
+        consolePrinter.printLine("Wydawca:");
         String publisher = sc.nextLine();
-        System.out.println("ISBN:");
+        consolePrinter.printLine("ISBN:");
         String isbn = sc.nextLine();
-        return new Book(title,publisher,releaseDate,author,pages,isbn);
+        return new Book(title, publisher, releaseDate, author, pages, isbn);
     }
 
     public Magazine readAndCreateMagazine() {
@@ -37,14 +43,21 @@ public class DataReader {
         int month = getInt();
         System.out.println("Dzień: ");
         int day = getInt();
-        return new Magazine(title, publisher,year, month, day, language);
+        return new Magazine(title, publisher, year, month, day, language);
     }
 
     public int getInt() {
-        int number = sc.nextInt();
-        sc.nextLine();
-        return number;
+        try {
+            return sc.nextInt();
+        } catch (InputMismatchException e) {
+            throw e;
+        } finally {
+            sc.nextLine();
+        }
+
+
     }
+
     public void close() {
         sc.close();
     }
