@@ -19,8 +19,6 @@ public class LibraryControl {
 
     public void controlLoop() {
         Option option;
-
-
             do {
                 printOptions();
                 option = getOption();

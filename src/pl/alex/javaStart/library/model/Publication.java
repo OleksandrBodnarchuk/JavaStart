@@ -2,7 +2,7 @@ package pl.alex.javaStart.library.model;
 
 import java.util.Objects;
 
-public class Publication {
+public abstract class Publication {
     private final String title;
     private final String publisher;
     private final int year;
