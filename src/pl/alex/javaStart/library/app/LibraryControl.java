@@ -8,9 +8,10 @@ import pl.alex.javaStart.library.model.Book;
 import pl.alex.javaStart.library.model.Magazine;
 import pl.alex.javaStart.library.model.Publication;
 
+
 import java.util.InputMismatchException;
 
-import static pl.alex.javaStart.library.app.Option.EXIT;
+
 
 public class LibraryControl {
     private final ConsolePrinter consolePrinter = new ConsolePrinter();
@@ -31,7 +32,7 @@ public class LibraryControl {
                     case EXIT -> exit();
                     default -> consolePrinter.printLine("Nie ma takiej opcji, wprowadź ponownie: ");
                 }
-            } while (option != EXIT);
+            } while (option != Option.EXIT);
 
     }
 
@@ -94,4 +95,35 @@ public class LibraryControl {
         System.out.println("Koniec programu!");
         dataReader.close();
     }
+
+    private enum Option {
+        EXIT(0, "Wyjście z programu"),
+        ADD_BOOK(1, "Dodanie książki"),
+        ADD_MAGAZINE(2, "Dodanie magazynu/gazety"),
+        PRINT_BOOKS(3, "Wyświetlenie dostępnych książek"),
+        PRINT_MAGAZINES(4, "WYświetlenie dostępnych magazynów/gazet");
+
+        private final int value;
+        private final String description;
+
+
+        Option(int value, String description) {
+            this.value = value;
+            this.description = description;
+        }
+
+        @Override
+        public String toString() {
+            return value + " - " + description;
+        }
+
+        public static Option createFromInt(int option) throws NoSuchOptionException{
+            try {
+                return Option.values()[option];
+            } catch (ArrayIndexOutOfBoundsException e) {
+                throw new NoSuchOptionException("Brak opcji o ID: " + option);
+            }
+        }
+    }
+
 }
