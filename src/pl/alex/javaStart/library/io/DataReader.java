@@ -8,35 +8,35 @@ import java.util.Scanner;
 
 public class DataReader {
     private final Scanner sc = new Scanner(System.in);
-    private ConsolePrinter consolePrinter;
+    private final ConsolePrinter consolePrinter;
 
     public DataReader(ConsolePrinter consolePrinter) {
         this.consolePrinter = consolePrinter;
     }
 
     public Book readAndCreateBook() {
-       consolePrinter.printLine("Tytuł:");
-        String title = sc.nextLine();
+        consolePrinter.printLine("Tytuł:");
+        String title = getString();
         consolePrinter.printLine("Autor:");
-        String author = sc.nextLine();
+        String author = getString();
         consolePrinter.printLine("Data wydania:");
         int releaseDate = getInt();
         consolePrinter.printLine("Ilość stron:");
         int pages = getInt();
         consolePrinter.printLine("Wydawca:");
-        String publisher = sc.nextLine();
+        String publisher = getString();
         consolePrinter.printLine("ISBN:");
-        String isbn = sc.nextLine();
+        String isbn = getString();
         return new Book(title, publisher, releaseDate, author, pages, isbn);
     }
 
     public Magazine readAndCreateMagazine() {
         System.out.println("Tytuł: ");
-        String title = sc.nextLine();
+        String title = getString();
         System.out.println("Wydawnictwo: ");
-        String publisher = sc.nextLine();
+        String publisher = getString();
         System.out.println("Język: ");
-        String language = sc.nextLine();
+        String language = getString();
         System.out.println("Rok wydania: ");
         int year = getInt();
         System.out.println("Miesiąc: ");
@@ -54,8 +54,10 @@ public class DataReader {
         } finally {
             sc.nextLine();
         }
+    }
 
-
+    public String getString(){
+        return sc.nextLine();
     }
 
     public void close() {

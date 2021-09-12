@@ -1,8 +1,9 @@
 package pl.alex.javaStart.library.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public abstract class Publication {
+public abstract class Publication implements Serializable {
     private final String title;
     private final String publisher;
     private final int year;

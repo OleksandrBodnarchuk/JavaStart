@@ -1,12 +1,14 @@
 package pl.alex.javaStart.library.model;
 
-public class Library {
+import java.io.Serializable;
+
+public class Library implements Serializable {
     private static final int MAX_PUBLICATONS = 2000;
     private int publicationsNumber;
     private final Publication[] publications = new Publication[MAX_PUBLICATONS];
 
     private void addPublication(Publication publication) {
-        if (publicationsNumber < MAX_PUBLICATONS) {
+        if (publicationsNumber >= MAX_PUBLICATONS) {
             throw new ArrayIndexOutOfBoundsException("Maksymalna liczba publikacji została osiągnięta");
         }
         publications[publicationsNumber] = publication;

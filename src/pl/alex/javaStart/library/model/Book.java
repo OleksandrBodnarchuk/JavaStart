@@ -30,6 +30,6 @@ public class Book extends Publication {
 
     @Override
     public String toString() {
-        return super.getTitle() + " " + this.author + " " + super.getPublisher() + " " + this.pages + "pages " + super.getYear() + " " + this.isbn;
+        return super.getTitle() + ", " + this.author + ", " + super.getPublisher() + ", " + this.pages + ", pages " + super.getYear() + ", " + this.isbn;
     }
 }
