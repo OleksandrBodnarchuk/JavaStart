@@ -26,6 +26,8 @@ public abstract class Publication implements Serializable {
         return publisher;
     }
 
+    public abstract String toCsv();
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

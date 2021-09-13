@@ -18,6 +18,7 @@ public class FileManagerBuilder {
         printer.printLine("Wybierz format");
         FileType fileType = getFileType();
         return switch (fileType) {
+            case CSV -> new CsvFileManager();
             case SERIAL -> new SerializableFileManager();
             default -> throw new NoSuchFileTypeException("Nieobs³ugiwany typ danych");
         };

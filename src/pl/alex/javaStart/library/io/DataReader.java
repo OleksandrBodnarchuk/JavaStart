@@ -7,61 +7,61 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class DataReader {
-    private final Scanner sc = new Scanner(System.in);
-    private final ConsolePrinter consolePrinter;
+    private Scanner sc = new Scanner(System.in);
+    private ConsolePrinter printer;
 
-    public DataReader(ConsolePrinter consolePrinter) {
-        this.consolePrinter = consolePrinter;
+    public DataReader(ConsolePrinter printer) {
+        this.printer = printer;
     }
 
-    public Book readAndCreateBook() {
-        consolePrinter.printLine("Tytuł:");
-        String title = getString();
-        consolePrinter.printLine("Autor:");
-        String author = getString();
-        consolePrinter.printLine("Data wydania:");
-        int releaseDate = getInt();
-        consolePrinter.printLine("Ilość stron:");
-        int pages = getInt();
-        consolePrinter.printLine("Wydawca:");
-        String publisher = getString();
-        consolePrinter.printLine("ISBN:");
-        String isbn = getString();
-        return new Book(title, publisher, releaseDate, author, pages, isbn);
-    }
-
-    public Magazine readAndCreateMagazine() {
-        System.out.println("Tytuł: ");
-        String title = getString();
-        System.out.println("Wydawnictwo: ");
-        String publisher = getString();
-        System.out.println("Język: ");
-        String language = getString();
-        System.out.println("Rok wydania: ");
-        int year = getInt();
-        System.out.println("Miesiąc: ");
-        int month = getInt();
-        System.out.println("Dzień: ");
-        int day = getInt();
-        return new Magazine(title, publisher, year, month, day, language);
+    public void close() {
+        sc.close();
     }
 
     public int getInt() {
         try {
             return sc.nextInt();
-        } catch (InputMismatchException e) {
-            throw e;
         } finally {
             sc.nextLine();
         }
     }
 
-    public String getString(){
+    public String getString() {
         return sc.nextLine();
     }
 
-    public void close() {
-        sc.close();
+    public Book readAndCreateBook() {
+        printer.printLine("Tytuł: ");
+        String title = sc.nextLine();
+        printer.printLine("Autor: ");
+        String author = sc.nextLine();
+        printer.printLine("Wydawnictwo: ");
+        String publisher = sc.nextLine();
+        printer.printLine("ISBN: ");
+        String isbn = sc.nextLine();
+        printer.printLine("Rok wydania: ");
+        int releaseDate = getInt();
+        printer.printLine("Ilość stron: ");
+        int pages = getInt();
+
+        return new Book(title, author, releaseDate, pages, publisher, isbn);
+    }
+
+    public Magazine readAndCreateMagazine() {
+        printer.printLine("Tytuł: ");
+        String title = sc.nextLine();
+        printer.printLine("Wydawnictwo: ");
+        String publisher = sc.nextLine();
+        printer.printLine("Język: ");
+        String language = sc.nextLine();
+        printer.printLine("Rok wydania: ");
+        int year = getInt();
+        printer.printLine("Miesiąc: ");
+        int month = getInt();
+        printer.printLine("Dzień: ");
+        int day = getInt();
+
+        return new Magazine(title, publisher, language, year, month, day);
     }
 
 }

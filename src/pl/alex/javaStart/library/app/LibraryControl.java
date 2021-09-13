@@ -2,6 +2,7 @@ package pl.alex.javaStart.library.app;
 
 import pl.alex.javaStart.library.exceptions.DataExportException;
 import pl.alex.javaStart.library.exceptions.DataImportException;
+import pl.alex.javaStart.library.exceptions.InvalidDataException;
 import pl.alex.javaStart.library.exceptions.NoSuchOptionException;
 import pl.alex.javaStart.library.io.ConsolePrinter;
 import pl.alex.javaStart.library.io.DataReader;
@@ -28,7 +29,7 @@ class LibraryControl {
         try {
             library = fileManager.importData();
             printer.printLine("Zaimportowane dane z pliku");
-        } catch (DataImportException e) {
+        } catch (DataImportException | InvalidDataException e) {
             printer.printLine(e.getMessage());
             printer.printLine("Zainicjowano nową bazę.");
             library = new Library();
@@ -79,7 +80,7 @@ class LibraryControl {
     private void addBook() {
         try {
             Book book = dataReader.readAndCreateBook();
-            library.addBook(book);
+            library.addPublication(book);
         } catch (InputMismatchException e) {
             printer.printLine("Nie udało się utworzyć książki, niepoprawne dane");
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -95,7 +96,7 @@ class LibraryControl {
     private void addMagazine() {
         try {
             Magazine magazine = dataReader.readAndCreateMagazine();
-            library.addMagazine(magazine);
+            library.addPublication(magazine);
         } catch (InputMismatchException e) {
             printer.printLine("Nie udało się utworzyć magazynu, niepoprawne dane");
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -126,8 +127,8 @@ class LibraryControl {
         PRINT_BOOKS(3, "Wyświetlenie dostępnych książek"),
         PRINT_MAGAZINES(4, "Wyświetlenie dostępnych magazynów/gazet");
 
-        private int value;
-        private String description;
+        private final int value;
+        private final String description;
 
         Option(int value, String desc) {
             this.value = value;

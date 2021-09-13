@@ -7,7 +7,7 @@ public class Library implements Serializable {
     private int publicationsNumber;
     private final Publication[] publications = new Publication[MAX_PUBLICATONS];
 
-    private void addPublication(Publication publication) {
+    public void addPublication(Publication publication) {
         if (publicationsNumber >= MAX_PUBLICATONS) {
             throw new ArrayIndexOutOfBoundsException("Maksymalna liczba publikacji została osiągnięta");
         }
@@ -15,16 +15,10 @@ public class Library implements Serializable {
         publicationsNumber++;
     }
 
-    public void addBook(Book book) {
-        addPublication(book);
-    }
-
-    public void addMagazine(Magazine magazine) {
-        addPublication(magazine);
-    }
-
     public Publication[] getPublications() {
-        return publications;
+        Publication[] availablePublications = new Publication[publicationsNumber];
+        System.arraycopy(publications, 0, availablePublications, 0, publicationsNumber);
+        return availablePublications;
     }
 }
 

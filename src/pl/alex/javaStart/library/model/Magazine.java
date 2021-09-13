@@ -3,15 +3,28 @@ package pl.alex.javaStart.library.model;
 import java.util.Objects;
 
 public class Magazine extends Publication {
+    public static final String TYPE = "Magazyn";
+
     private final int month;
     private final int day;
     private final String language;
 
-    public Magazine(String title, String publisher, int year, int month, int day, String language) {
+    public Magazine(String title, String publisher,String language, int year, int month, int day) {
         super(title, publisher, year);
         this.month = month;
         this.day = day;
         this.language = language;
+    }
+
+    @Override
+    public String toCsv() {
+        return (TYPE + ";") +
+                getTitle() + ";" +
+                getPublisher() + ";" +
+                getYear() + ";" +
+                month + ";" +
+                day + ";" +
+                language + "";
     }
 
     @Override
