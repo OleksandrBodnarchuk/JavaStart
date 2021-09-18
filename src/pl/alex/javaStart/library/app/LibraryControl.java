@@ -45,12 +45,38 @@ class LibraryControl {
             switch (option) {
                 case ADD_BOOK -> addBook();
                 case ADD_MAGAZINE -> addMagazine();
+                case DELETE_BOOK -> deleteBook();
+                case DELETE_MAGAZINE -> deleteMagazine();
                 case PRINT_BOOKS -> printBooks();
                 case PRINT_MAGAZINES -> printMagazines();
                 case EXIT -> exit();
                 default -> printer.printLine("Nie ma takiej opcji, wprowadź ponownie: ");
             }
         } while (option != Option.EXIT);
+    }
+
+    private void deleteBook() {
+        try {
+            Book book = dataReader.readAndCreateBook();
+            if (library.removePublication(book)) {
+                printer.printLine("Usunięto książkę");
+            } else
+                printer.printLine("Brak wskazanego tytułu");
+        } catch (InputMismatchException e) {
+            printer.printLine("Nie udało się utworzyć książki, niepoprawne dane");
+        }
+    }
+
+    private void deleteMagazine() {
+        try {
+            Magazine magazine = dataReader.readAndCreateMagazine();
+            if (library.removePublication(magazine))
+                printer.printLine("Usunięto magazyn.");
+            else
+                printer.printLine("Brak wskazanego magazynu.");
+        } catch (InputMismatchException e) {
+            printer.printLine("Nie udało się utworzyć magazynu, niepoprawne dane");
+        }
     }
 
     private Option getOption() {
@@ -123,9 +149,11 @@ class LibraryControl {
     private enum Option {
         EXIT(0, "Wyjście z programu"),
         ADD_BOOK(1, "Dodanie książki"),
-        ADD_MAGAZINE(2,"Dodanie magazynu/gazety"),
-        PRINT_BOOKS(3, "Wyświetlenie dostępnych książek"),
-        PRINT_MAGAZINES(4, "Wyświetlenie dostępnych magazynów/gazet");
+        ADD_MAGAZINE(2, "Dodanie magazynu/gazety"),
+        DELETE_BOOK(3, "Usuwanie książki"),
+        DELETE_MAGAZINE(4, "Usuwanie magazynu/gazety"),
+        PRINT_BOOKS(5, "Wyświetlenie dostępnych książek"),
+        PRINT_MAGAZINES(6, "Wyświetlenie dostępnych magazynów/gazet");
 
         private final int value;
         private final String description;
@@ -143,7 +171,7 @@ class LibraryControl {
         static Option createFromInt(int option) throws NoSuchOptionException {
             try {
                 return Option.values()[option];
-            } catch(ArrayIndexOutOfBoundsException e) {
+            } catch (ArrayIndexOutOfBoundsException e) {
                 throw new NoSuchOptionException("Brak opcji o id " + option);
             }
         }
