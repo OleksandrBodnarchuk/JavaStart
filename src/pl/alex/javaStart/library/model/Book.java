@@ -3,7 +3,7 @@ package pl.alex.javaStart.library.model;
 import java.util.Objects;
 
 public class Book extends Publication {
-    public static final String TYPE = "Ksi¹¿ka";
+    public static final String TYPE = "KsiÄ…Å¼ka";
     // Pola
     private String author;
     private int pages;

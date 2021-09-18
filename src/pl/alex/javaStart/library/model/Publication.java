@@ -14,15 +14,15 @@ public abstract class Publication implements Serializable {
         this.year = year;
     }
 
-    int getYear() {
+    public int getYear() {
         return year;
     }
 
-    String getTitle() {
+    public String getTitle() {
         return title;
     }
 
-    String getPublisher() {
+    public String getPublisher() {
         return publisher;
     }
 

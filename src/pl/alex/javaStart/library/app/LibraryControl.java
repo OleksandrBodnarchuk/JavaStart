@@ -12,8 +12,10 @@ import pl.alex.javaStart.library.model.Library;
 import pl.alex.javaStart.library.model.Book;
 import pl.alex.javaStart.library.model.Magazine;
 import pl.alex.javaStart.library.model.Publication;
+import pl.alex.javaStart.library.model.comparator.AlphabeticalTitleComparator;
 
 
+import java.util.Arrays;
 import java.util.InputMismatchException;
 
 
@@ -115,8 +117,19 @@ class LibraryControl {
     }
 
     private void printBooks() {
-        Publication[] publications = library.getPublications();
+        Publication[] publications = getSortedPublications();
         printer.printBooks(publications);
+    }
+
+    private void printMagazines() {
+        Publication[] publications = getSortedPublications();
+        printer.printMagazines(publications);
+    }
+
+    private Publication[] getSortedPublications() {
+        Publication[] publications = library.getPublications();
+        Arrays.sort(publications, new AlphabeticalTitleComparator());
+        return publications;
     }
 
     private void addMagazine() {
@@ -128,11 +141,6 @@ class LibraryControl {
         } catch (ArrayIndexOutOfBoundsException e) {
             printer.printLine("Osiągnięto limit pojemności, nie można dodać kolejnego magazynu");
         }
-    }
-
-    private void printMagazines() {
-        Publication[] publications = library.getPublications();
-        printer.printMagazines(publications);
     }
 
     private void exit() {
