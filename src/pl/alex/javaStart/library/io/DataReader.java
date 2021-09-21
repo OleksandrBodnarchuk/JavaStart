@@ -1,6 +1,7 @@
 package pl.alex.javaStart.library.io;
 
 import pl.alex.javaStart.library.model.Book;
+import pl.alex.javaStart.library.model.LibraryUser;
 import pl.alex.javaStart.library.model.Magazine;
 
 import java.util.InputMismatchException;
@@ -45,6 +46,16 @@ public class DataReader {
         int pages = getInt();
 
         return new Book(title, author, releaseDate, pages, publisher, isbn);
+    }
+
+    public LibraryUser createLibraryUser() {
+        printer.printLine("Imię");
+        String name = sc.nextLine();
+        printer.printLine("Nazwisko");
+        String surname = sc.nextLine();
+        printer.printLine("PESEL");
+        String pesel = sc.nextLine();
+        return new LibraryUser(name, surname, pesel);
     }
 
     public Magazine readAndCreateMagazine() {

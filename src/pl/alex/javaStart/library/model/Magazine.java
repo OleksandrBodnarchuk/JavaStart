@@ -1,9 +1,12 @@
 package pl.alex.javaStart.library.model;
 
+import java.io.Serial;
 import java.util.Objects;
 
 public class Magazine extends Publication {
     public static final String TYPE = "Magazyn";
+    @Serial
+    private static final long serialVersionUID = -1923291173538257470L;
 
     private final int month;
     private final int day;
@@ -44,5 +47,10 @@ public class Magazine extends Publication {
     @Override
     public String toString() {
         return super.getTitle() + " " + super.getPublisher() + " " + super.getYear() + " " + this.day + " " + this.month + " " + this.language;
+    }
+
+    @Override
+    public int compareTo(Publication p) {
+        return this.getTitle().compareTo(p.getTitle());
     }
 }

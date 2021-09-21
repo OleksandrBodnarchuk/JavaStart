@@ -3,39 +3,85 @@ package pl.alex.javaStart.library.io.file;
 import pl.alex.javaStart.library.exceptions.DataExportException;
 import pl.alex.javaStart.library.exceptions.DataImportException;
 import pl.alex.javaStart.library.exceptions.InvalidDataException;
-import pl.alex.javaStart.library.model.Book;
-import pl.alex.javaStart.library.model.Library;
-import pl.alex.javaStart.library.model.Magazine;
-import pl.alex.javaStart.library.model.Publication;
+import pl.alex.javaStart.library.model.*;
 
 import java.io.*;
+import java.util.Collection;
 import java.util.Scanner;
 
 public class CsvFileManager implements FileManager {
     private final static String FILE_NAME = "Library.csv";
+    private final static String USERS_FILE_NAME = "Users.csv";
 
 
     @Override
     public void exportData(Library library) {
-        Publication[] publications = library.getPublications();
-        try (var writer = new FileWriter(FILE_NAME);
-             var file = new BufferedWriter(writer)) {
-            for (Publication publication : publications) {
-                file.write(publication.toCsv());
-                file.newLine();
-            }
-    } catch(
-    IOException e)
-
-    {
-        throw new DataExportException("B��d pod czas zapisu do pliku.");
+        exportPublications(library);
+        exportUsers(library);
     }
 
-}
+    private void exportUsers(Library library) {
+        Collection<LibraryUser> users = library.getUsers().values();
+        exportToCsv(users, USERS_FILE_NAME);
+    }
+
+    private void exportPublications(Library library) {
+        Collection<Publication> publications = library.getPublications().values();
+        exportToCsv(publications, FILE_NAME);
+    }
+
+    private <T extends CsvConvertible> void exportToCsv(Collection<T> collection, String fileName) {
+        try (var fileWriter = new FileWriter(fileName);
+             var writer = new BufferedWriter(fileWriter)) {
+            for (T object : collection) {
+                writer.write(object.toCsv());
+                writer.newLine();
+            }
+
+        } catch (IOException e) {
+            throw new DataExportException("Błąd zapisu danych do pliku " + fileName);
+        }
+    }
+
+
+    private void exportToCsv(Library library) {
+        Collection<LibraryUser> users = library.getUsers().values();
+        try (var writer = new FileWriter(USERS_FILE_NAME);
+             var file = new BufferedWriter(writer)) {
+            for (LibraryUser user : users) {
+                file.write(user.toCsv());
+                file.newLine();
+            }
+        } catch (
+                IOException e) {
+            throw new DataExportException("Błąd pod czas zapisu do pliku. " + USERS_FILE_NAME);
+        }
+    }
+
 
     @Override
     public Library importData() {
         Library library = new Library();
+        importPublications(library);
+        importUsers(library);
+
+        return library;
+    }
+
+    private void importUsers(Library library) {
+        try (Scanner scanner = new Scanner(new File(USERS_FILE_NAME))) {
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                LibraryUser user = createUserFromString(line);
+                library.addUser(user);
+            }
+        } catch (FileNotFoundException e) {
+            throw new DataImportException("Brak pliku: " + USERS_FILE_NAME);
+        }
+    }
+
+
+    private void importPublications(Library library) {
         try (Scanner scanner = new Scanner(new File(FILE_NAME))) {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
@@ -45,7 +91,12 @@ public class CsvFileManager implements FileManager {
         } catch (FileNotFoundException e) {
             throw new DataImportException("Brak pliku: " + FILE_NAME);
         }
-        return library;
+    }
+
+    private LibraryUser createUserFromString(String line) {
+        String[] split = line.split(";");
+        return new LibraryUser(split[0], split[1], split[2]);
+
     }
 
     private Publication createObjectFromString(String line) {

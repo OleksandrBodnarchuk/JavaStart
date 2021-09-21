@@ -1,9 +1,12 @@
 package pl.alex.javaStart.library.model;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 
-public abstract class Publication implements Serializable {
+public abstract class Publication implements Serializable, Comparable<Publication>,CsvConvertible {
+    @Serial
+    private static final long serialVersionUID = -4850724762194952897L;
     private final String title;
     private final String publisher;
     private final int year;
@@ -25,8 +28,6 @@ public abstract class Publication implements Serializable {
     public String getPublisher() {
         return publisher;
     }
-
-    public abstract String toCsv();
 
     @Override
     public boolean equals(Object o) {

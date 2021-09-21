@@ -1,9 +1,12 @@
 package pl.alex.javaStart.library.model;
 
+import java.io.Serial;
 import java.util.Objects;
 
 public class Book extends Publication {
     public static final String TYPE = "Książka";
+    @Serial
+    private static final long serialVersionUID = -4884655256886128446L;
     // Pola
     private String author;
     private int pages;
@@ -73,5 +76,10 @@ public class Book extends Publication {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), author, pages, isbn);
+    }
+
+    @Override
+    public int compareTo(Publication p) {
+        return this.getTitle().compareTo(p.getTitle());
     }
 }
