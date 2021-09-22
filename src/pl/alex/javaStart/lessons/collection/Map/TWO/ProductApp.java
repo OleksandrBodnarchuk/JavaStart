@@ -1,6 +1,4 @@
-package pl.alex.javaStart.lessons.collections.Map.TWO;
-
-import com.sun.source.util.Trees;
+package pl.alex.javaStart.lessons.collection.Map.TWO;
 
 import java.io.FileNotFoundException;
 import java.util.Map;

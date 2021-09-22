@@ -1,4 +1,4 @@
-package pl.alex.javaStart.lessons.collections.Map.ONE;
+package pl.alex.javaStart.lessons.collection.Map.ONE;
 
 import java.util.Objects;
 

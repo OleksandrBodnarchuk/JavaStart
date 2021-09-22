@@ -8,9 +8,9 @@ public class Book extends Publication {
     @Serial
     private static final long serialVersionUID = -4884655256886128446L;
     // Pola
-    private String author;
-    private int pages;
-    private String isbn;
+    private final String author;
+    private final int pages;
+    private final String isbn;
 
     // Konstruktory
     public Book(String title, String author, int year, int pages, String publisher,
@@ -19,31 +19,6 @@ public class Book extends Publication {
         this.pages = pages;
         this.author = author;
         this.isbn = isbn;
-    }
-
-    // settery i gettery
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
-    public int getPages() {
-        return pages;
-    }
-
-    public void setPages(int pages) {
-        this.pages = pages;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
     }
 
     @Override
@@ -59,7 +34,7 @@ public class Book extends Publication {
 
     @Override
     public String toString() {
-        return super.toString() + author + ", " + pages + ", " + isbn;
+        return super.getTitle() + ", " + super.getPublisher() + ", " + super.getYear() + ", " + author + ", " + pages + ", " + isbn;
     }
 
     @Override

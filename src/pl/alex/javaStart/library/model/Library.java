@@ -5,9 +5,7 @@ import pl.alex.javaStart.library.exceptions.UserAlreadyExistsException;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Library implements Serializable {
     @Serial
@@ -36,6 +34,18 @@ public class Library implements Serializable {
             result = true;
         }
         return result;
+    }
+
+    public Collection<Publication> getSortedPublications(Comparator<Publication> publicationComparator) {
+        ArrayList<Publication> publications = new ArrayList<>(this.publications.values());
+        publications.sort(publicationComparator);
+        return publications;
+    }
+
+    public Collection<LibraryUser> getSortedUsers(Comparator<User> userComparator) {
+        ArrayList<LibraryUser> users = new ArrayList<>(this.users.values());
+        users.sort(userComparator);
+        return users;
     }
 
     public Map<String, Publication> getPublications() {

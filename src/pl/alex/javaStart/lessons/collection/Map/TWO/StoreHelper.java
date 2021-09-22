@@ -1,4 +1,4 @@
-package pl.alex.javaStart.lessons.collections.Map.TWO;
+package pl.alex.javaStart.lessons.collection.Map.TWO;
 
 import java.io.File;
 import java.io.FileNotFoundException;

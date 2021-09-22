@@ -1,4 +1,4 @@
-package pl.alex.javaStart.lessons.collections.Set.TWO;
+package pl.alex.javaStart.lessons.collection.Set.TWO;
 
 
 import java.util.HashSet;

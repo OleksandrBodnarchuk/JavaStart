@@ -1,4 +1,4 @@
-package pl.alex.javaStart.lessons.collections.List.TWO;
+package pl.alex.javaStart.lessons.collection.List.TWO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ public class App {
         boolean numberIsCorrect = true;
 
         while(numberIsCorrect) {
-            System.out.println("Podaj kolejn¹ liczbê nieujemn¹, podzieln¹ przez 5");
+            System.out.println("Podaj kolejnï¿½ liczbï¿½ nieujemnï¿½, podzielnï¿½ przez 5");
             next = scanner.nextInt();
             if (next >= 0 && next % 5 == 0) {
                 numbers.add(next);
@@ -29,6 +29,6 @@ public class App {
 
         System.out.println("Ile poprawnych liczb: " + numbers.size());
         System.out.println("Ich suma wynosi: " + sum);
-        System.out.println("Natomiast œrednia to: " + avg);
+        System.out.println("Natomiast ï¿½rednia to: " + avg);
     }
 }

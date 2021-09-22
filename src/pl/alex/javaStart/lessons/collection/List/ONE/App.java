@@ -1,4 +1,4 @@
-package pl.alex.javaStart.lessons.collections.List.ONE;
+package pl.alex.javaStart.lessons.collection.List.ONE;
 
 
 import java.util.ArrayList;

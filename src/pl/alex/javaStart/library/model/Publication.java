@@ -41,4 +41,10 @@ public abstract class Publication implements Serializable, Comparable<Publicatio
     public int hashCode() {
         return Objects.hash(title, publisher, year);
     }
+
+    @Override
+    public int compareTo(Publication p) {
+        return title.compareToIgnoreCase(p.title);
+    }
+
 }

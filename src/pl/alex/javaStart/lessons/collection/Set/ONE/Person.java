@@ -1,4 +1,4 @@
-package pl.alex.javaStart.lessons.collections.Set.ONE;
+package pl.alex.javaStart.lessons.collection.Set.ONE;
 
 import java.util.Objects;
 
