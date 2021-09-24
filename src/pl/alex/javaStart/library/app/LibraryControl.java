@@ -120,14 +120,14 @@ class LibraryControl {
     }
 
     private void printBooks() {
-        printer.printBooks(library.getSortedPublications(Comparator.comparing(Publication::getTitle)));
+        printer.printBooks(library.getSortedPublications(Comparator.comparing(Publication::getTitle, String.CASE_INSENSITIVE_ORDER)));
     }
 
     private void printMagazines() {
-        printer.printMagazines(library.getSortedPublications(Comparator.comparing(Publication::getTitle)));
+        printer.printMagazines(library.getSortedPublications(Comparator.comparing(Publication::getTitle, String.CASE_INSENSITIVE_ORDER)));
     }
     private void printUsers() {
-        printer.printUsers(library.getSortedUsers((o1, o2) -> o1.getSurname().compareToIgnoreCase(o2.getSurname())));
+        printer.printUsers(library.getSortedUsers(Comparator.comparing(User::getSurname,String.CASE_INSENSITIVE_ORDER)));
     }
 
 
