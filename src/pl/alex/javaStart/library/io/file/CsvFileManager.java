@@ -7,7 +7,7 @@ import pl.alex.javaStart.library.model.*;
 
 import java.io.*;
 import java.util.Collection;
-import java.util.Scanner;
+
 
 public class CsvFileManager implements FileManager {
     private final static String FILE_NAME = "Library.csv";
@@ -43,53 +43,36 @@ public class CsvFileManager implements FileManager {
         }
     }
 
-
-    private void exportToCsv(Library library) {
-        Collection<LibraryUser> users = library.getUsers().values();
-        try (var writer = new FileWriter(USERS_FILE_NAME);
-             var file = new BufferedWriter(writer)) {
-            for (LibraryUser user : users) {
-                file.write(user.toCsv());
-                file.newLine();
-            }
-        } catch (
-                IOException e) {
-            throw new DataExportException("Błąd pod czas zapisu do pliku. " + USERS_FILE_NAME);
-        }
-    }
-
-
     @Override
     public Library importData() {
         Library library = new Library();
         importPublications(library);
         importUsers(library);
-
         return library;
     }
 
     private void importUsers(Library library) {
-        try (Scanner scanner = new Scanner(new File(USERS_FILE_NAME))) {
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                LibraryUser user = createUserFromString(line);
-                library.addUser(user);
-            }
+        try (BufferedReader reader = new BufferedReader(new FileReader(USERS_FILE_NAME))) {
+            reader.lines()
+                    .map(this::createUserFromString)
+                    .forEach(library::addUser);
         } catch (FileNotFoundException e) {
             throw new DataImportException("Brak pliku: " + USERS_FILE_NAME);
+        } catch (IOException e) {
+            throw new DataImportException("Brak odczytu pliku: " + USERS_FILE_NAME);
         }
     }
 
 
     private void importPublications(Library library) {
-        try (Scanner scanner = new Scanner(new File(FILE_NAME))) {
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                Publication publication = createObjectFromString(line);
-                library.addPublication(publication);
-            }
+        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
+            reader.lines()
+                    .map(this::createObjectFromString)
+                    .forEach(library::addPublication);
         } catch (FileNotFoundException e) {
             throw new DataImportException("Brak pliku: " + FILE_NAME);
+        } catch (IOException e) {
+            throw new DataImportException("Brak odczytu pliku: " + FILE_NAME);
         }
     }
 
