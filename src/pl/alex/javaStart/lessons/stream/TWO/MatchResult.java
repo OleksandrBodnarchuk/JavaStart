@@ -1,16 +1,18 @@
 package pl.alex.javaStart.lessons.stream.TWO;
 
+import java.util.Objects;
+
 public class MatchResult {
     private final String host;
     private final String guest;
-    private final int ourScore;
-    private final int opponentScore;
+    private final int hostScore;
+    private final int guestScore;
 
-    public MatchResult(String host, String guest, int ourScore, int opponentScore) {
+    public MatchResult(String host, String guest, int hostScore, int guestScore) {
         this.host = host;
         this.guest = guest;
-        this.ourScore = ourScore;
-        this.opponentScore = opponentScore;
+        this.hostScore = hostScore;
+        this.guestScore = guestScore;
     }
 
     public String getHost() {
@@ -22,29 +24,44 @@ public class MatchResult {
     }
 
     public int getGoalDifference() {
-        return ourScore - opponentScore;
+        return hostScore - guestScore;
     }
 
-    public int getOurScore() {
-        return ourScore;
+    public int getHostScore() {
+        return hostScore;
     }
 
-    public int getOpponentScore() {
-        return opponentScore;
+    public int getGuestScore() {
+        return guestScore;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MatchResult that = (MatchResult) o;
+        return hostScore == that.hostScore && guestScore == that.guestScore && Objects.equals(host, that.host) && Objects.equals(guest, that.guest);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(host, guest, hostScore, guestScore);
     }
 
     @Override
     public String toString() {
-        return host + " - " + guest + " (" + ourScore + " : " + opponentScore + ")";
-    }
-    String[] getTeamNames() {
-        return new String[] {host, guest};
+        return host + " - " + guest + " (" + hostScore + ":" + guestScore + ")";
     }
 
-    int getGoalsSum() {
-        return ourScore + opponentScore;
+    public boolean containsTeam(String team) {
+        return host.equals(team) || guest.equals(team);
     }
-    public boolean containsTeam(String teamName) {
-        return host.equals(teamName) || guest.equals(teamName);
+
+    public String[] getTeamNames() {
+        return new String[]{host, guest};
+    }
+
+    public int getGoalsSum() {
+        return hostScore+guestScore;
     }
 }

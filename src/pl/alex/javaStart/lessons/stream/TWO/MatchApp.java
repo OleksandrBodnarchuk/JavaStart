@@ -1,32 +1,29 @@
 package pl.alex.javaStart.lessons.stream.TWO;
 
+
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class MatchApp {
     public static void main(String[] args) {
-        //#1
+        System.out.println(">>>");
         System.out.println("Wszystkie mecze:");
         Stream<MatchResult> results = createStream();
         printAllResultsSorted(results);
-        //#2
-        results = createStream();
         System.out.println(">>>");
         System.out.println("Wszystkie spotkania Polski:");
-        getResultsWithTeam(results, "Polska").forEach(System.out::println);
-        //#3
+        results = createStream();
+        getResultsWithTeam(results,"Polska");
         results = createStream();
         System.out.println(">>>");
         System.out.println("Liczba drużyn biorących udział w rozgrywkach: " + countDistinctTeams(results));
-        //#4
         results = createStream();
         System.out.println(">>>");
-        System.out.println("Łączna liczba goli: " + numberOfGoals(results));
-    }
+        System.out.println("Łączna liczba goli: " + countTotalGoals(results));
 
+    }
     private static Stream<MatchResult> createStream() {
         return Stream.of(
                 new MatchResult("Polska", "Irlandia", 2, 0),
@@ -45,9 +42,10 @@ public class MatchApp {
                 .forEach(System.out::println);
     }
 
-    private static List<MatchResult> getResultsWithTeam(Stream<MatchResult> results, String team) {
-        return results.filter(result -> result.containsTeam(team))
-                .collect(Collectors.toList());
+    private static void getResultsWithTeam(Stream<MatchResult> results, String team) {
+        results.filter(result -> result.containsTeam(team))
+                .collect(Collectors.toList())
+                .forEach(System.out::println);
     }
 
     private static long countDistinctTeams(Stream<MatchResult> results) {
@@ -57,7 +55,7 @@ public class MatchApp {
                 .count();
     }
 
-    private static int numberOfGoals(Stream<MatchResult> results) {
+    private static int countTotalGoals(Stream<MatchResult> results) {
         return results.mapToInt(MatchResult::getGoalsSum)
                 .sum();
     }
