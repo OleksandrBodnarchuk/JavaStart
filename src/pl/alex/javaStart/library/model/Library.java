@@ -13,6 +13,10 @@ public class Library implements Serializable {
     private final Map<String, Publication> publications = new HashMap<>();
     private final Map<String, LibraryUser> users = new HashMap<>();
 
+    public Optional<Publication> findPublicationByTitle(String title) {
+        return Optional.ofNullable(publications.get(title));
+    }
+
     public void addPublication(Publication publication) {
         if (publications.containsKey(publication.getTitle())) {
             throw new PublicationAlreadyExistsException("Publikacja już istnieje!");

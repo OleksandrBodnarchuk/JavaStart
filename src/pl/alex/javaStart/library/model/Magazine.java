@@ -1,6 +1,7 @@
 package pl.alex.javaStart.library.model;
 
 import java.io.Serial;
+import java.time.MonthDay;
 import java.util.Objects;
 
 public class Magazine extends Publication {
@@ -8,13 +9,13 @@ public class Magazine extends Publication {
     @Serial
     private static final long serialVersionUID = -1923291173538257470L;
 
-    private final int month;
+    private final MonthDay month;
     private final int day;
     private final String language;
 
     public Magazine(String title, String publisher,String language, int year, int month, int day) {
         super(title, publisher, year);
-        this.month = month;
+        this.month = MonthDay.of(month,day);
         this.day = day;
         this.language = language;
     }

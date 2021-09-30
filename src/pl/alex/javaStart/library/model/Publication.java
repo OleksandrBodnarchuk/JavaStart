@@ -2,6 +2,7 @@ package pl.alex.javaStart.library.model;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.Year;
 import java.util.Objects;
 
 public abstract class Publication implements Serializable, Comparable<Publication>,CsvConvertible {
@@ -9,15 +10,15 @@ public abstract class Publication implements Serializable, Comparable<Publicatio
     private static final long serialVersionUID = -4850724762194952897L;
     private final String title;
     private final String publisher;
-    private final int year;
+    private final Year year;
 
     Publication(String title, String publisher, int year) {
         this.title = title;
         this.publisher = publisher;
-        this.year = year;
+        this.year = Year.of(year);
     }
 
-    public int getYear() {
+    public Year getYear() {
         return year;
     }
 
